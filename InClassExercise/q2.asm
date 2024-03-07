@@ -71,9 +71,25 @@ main:
     move $a0, $s3
     syscall
 
+    li $v0, 4
+    la $a0, newline
+    syscall
+
 ### Exit Program ###
     li $v0, 10
     syscall
 
 ### Your code for Q2 goes here ###
 swap:
+    addi $sp, $sp, -8
+    sw $t0, 0($sp)
+    sw $t1, 4($sp)
+
+    lw $t0, 0($a0)
+    lw $t1, 0($a1)
+    sw $t1, 0($a0)
+    sw $t0, 0($a1)
+
+    lw $t1, 4($sp)
+    lw $t0, 4($sp)
+    jr $ra
